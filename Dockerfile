@@ -1,6 +1,7 @@
 FROM python:3.10-slim-buster
 
 WORKDIR /app
+RUN apt-get update && apt-get install ffmpeg libsm6 libxext6  -y
 
 RUN curl --proto '=https' --tlsv1.2 -sSf -y https://sh.rustup.rs | sh
 ENV PATH /home/pn/.cargo/bin:$PATH
