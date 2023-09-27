@@ -25,6 +25,7 @@ app = FastAPI()
 def yolo_speed_check(images: List[UploadFile]):
     for image in images:
         img = Image.open(image.file)
-        personDetect(img)
-    return {"speed": 1}
+        person_exist = personDetect(img)
+        return {"is_person_exist": person_exist}
+    return {"is_person_exist": False}
 
