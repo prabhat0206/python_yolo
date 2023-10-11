@@ -5,10 +5,9 @@ from typing import List
 import torch
 from datetime import datetime
 import os
-# os.environ['CUDA_LAUNCH_BLOCKING'] = "1"
 
-device = "cpu"
-model = YOLO('yolov8n.pt')
+device = "cuda"
+model = YOLO('yolov8m.pt')
 model = model.to(device=device)
 
 # Initialize a counter variable
@@ -18,7 +17,7 @@ def personDetect(image):
     # image = image.convert("RGB")
     # output = model(image, classes=[0])
     with torch.no_grad():
-        outputs = model(image, classes=[0], conf = 0.1)
+        outputs = model(image, classes=[0], conf = 0.2)
     result = []
     for output in outputs:
         if len(output.boxes.cls) > 0:
@@ -47,7 +46,7 @@ def yolo_speed_check(images: List[UploadFile]):
     # Check if the counter has reached 100, and clear CUDA cache if so
     print(run_counter)
     if run_counter >= 100:
-        # torch.cuda.empty_cache()
+        torch.cuda.empty_cache()
         run_counter = 0  # Reset the counter
 
     return person_exist_list

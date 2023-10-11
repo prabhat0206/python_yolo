@@ -4,5 +4,5 @@ __pycache__
 .pytest_cache
 for_testing/
 locust_test_best_face.py
-locust_test_best_face.py
 pytest_testing.py
+test.ipynb
