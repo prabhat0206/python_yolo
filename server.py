@@ -31,7 +31,7 @@ async def yolo_speed_check(images: List[UploadFile]):
     return {"speed": 1}
 
 
-@app.post("/api/v1/person-detect-url")
+@app.get("/api/v1/person-detect-url")
 async def person_detect_url(url: str):
     response = get(url)
     img = Image.open(BytesIO(response.content))
