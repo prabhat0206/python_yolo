@@ -17,7 +17,7 @@ def personDetect(image):
     # image = image.convert("RGB")
     # output = model(image, classes=[0])
     with torch.no_grad():
-        outputs = model(image, classes=[0], conf = 0.2)
+        outputs = model(image, classes=[0], conf = 0.2, verbose = False)
     result = []
     for output in outputs:
         if len(output.boxes.cls) > 0:
@@ -30,7 +30,7 @@ def personDetect(image):
 app = FastAPI()
 
 @app.post("/yolo-speed-check")
-def yolo_speed_check(images: List[UploadFile]):
+async def yolo_speed_check(images: List[UploadFile]):
     global run_counter  # Access the counter variable
     batch = []
     for image in images:
