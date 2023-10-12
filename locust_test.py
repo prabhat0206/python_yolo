@@ -8,16 +8,12 @@ class YOLOUser(HttpUser):
     @task
     def detect_objects(self):
         # Replace with the actual URL of your YOLO model endpoint
-        url = "http://localhost:8000/yolo-speed-check"
+        url = "http://localhost:8000/api/v1/person-detect-url?url=https://ichef.bbci.co.uk/news/1024/branded_news/150B8/production/_110000268_fe81a048b.jpg"
 
-        # Load an image from your test dataset
-        # Replace with your image loading logic
-        image_path = "for_testing/17299.png"
-        data = {'images': ('image1.png', open(image_path, 'rb'))}
 
         # Send a POST request with the image to your YOLO model
         headers = {"Content-Type": "image/jpeg"}
-        response = self.client.post(url, files=data)
+        response = self.client.get(url)
 
         # Check the response status code and content
         if response.status_code == 200:
