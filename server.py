@@ -35,5 +35,5 @@ async def yolo_speed_check(images: List[UploadFile]):
 async def person_detect_url(url: str):
     response = get(url)
     img = Image.open(BytesIO(response.content))
-    return {"person": personDetect(img)}
+    return {"is_person_exist": personDetect(img)}
     
