@@ -10,7 +10,7 @@ model = model.to(device = device)
 
 def personDetect(image):
   image = image.convert("RGB")
-  output = model(image, classes=[0])
+  output = model(image, classes=[0], conf = 0.2, verbose = False)
   time = datetime.now().strftime("%H%M%S.%f")
   if len(output[0].boxes.cls) > 0:
     print("{0} Person exists {1}".format(time, True))
