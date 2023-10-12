@@ -3,6 +3,8 @@ from ultralytics import YOLO
 from PIL import Image
 from typing import List
 from datetime import datetime
+from io import BytesIO
+from requests import get
 
 device = "cuda"
 model = YOLO('yolov8m.pt')
@@ -27,3 +29,11 @@ async def yolo_speed_check(images: List[UploadFile]):
         img = Image.open(image.file)
         personDetect(img)
     return {"speed": 1}
+
+
+@app.post("/api/v1/person-detect-url")
+async def person_detect_url(url: str):
+    response = get(url)
+    img = Image.open(BytesIO(response.content))
+    return {"person": personDetect(img)}
+    
