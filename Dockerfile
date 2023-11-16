@@ -1,4 +1,4 @@
-FROM nvidia/cuda:12.2.0-base-ubuntu22.04 AS builder
+FROM python:3.10-slim-buster
 
 WORKDIR /workspace
 
